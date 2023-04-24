@@ -1,6 +1,7 @@
 package org.example.models.properties;
 
 import lombok.Getter;
+import org.example.utils.Dice;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,4 +29,27 @@ public class Stat {
     public void appendStat(StatType statType, Integer value){
         stats.put(statType, getStat(statType) + value);
     }
+
+    public Integer modifier(StatType stat){
+        if(getStat(stat) > 15){
+            return 3;
+        }
+        if(getStat(stat) > 10){
+            return 2;
+        }
+        if(getStat(stat) > 5){
+            return 1;
+        }
+        return 0;
+    }
+
+    public void generate(Dice dice){
+        for ( StatType s : StatType.values()){
+            appendStat(s, dice.throwDices(5,3));
+        }
+        setStat(StatType.hp, getStat(StatType.strength) + getStat(StatType.vigor));
+        setStat(StatType.sp, getStat(StatType.intelligence) + getStat(StatType.mind));
+    }
+
+
 }

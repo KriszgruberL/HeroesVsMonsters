@@ -1,29 +1,40 @@
 package org.example.models.entity;
 
 
-import lombok.Getter;
-import org.example.models.properties.StatType;
-import org.example.utils.Dice;
+import org.example.models.loots.Gold;
+import org.example.models.loots.Leather;
 
-@Getter
-public abstract class Hero extends Entity{
+public abstract class Hero extends Entity implements Gold, Leather {
 
     private String name;
+    private Integer gold = 0 ;
+    private Integer leather = 0 ;
 
     public Hero(String name) {
         this.name = name;
-        for (StatType s: StatType.values()) {
-            if (( s != StatType.hp) && (s != StatType.sp)){
-                getStatList().appendStat(s, Dice.D6.throwDices(5,3));
-            }
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    @Override
+    public Integer getGold() {
+        return gold;
+    }
+
+    @Override
+    public Integer getLeather() {
+        return leather;
+    }
+
+    public void loot(Entity target){
+        if(target instanceof Gold g){
+            gold += g.getGold();
         }
-
+        if(target instanceof Leather g){
+            gold += g.getLeather();
+        }
+        regen();
     }
-
-    public void setHpSp() {
-        getStatList().appendStat(StatType.hp,getStrength() + getStatList().getStat(StatType.vigor));
-        getStatList().appendStat(StatType.sp, getIntelligence()+ getStatList().getStat(StatType.mind));
-    }
-
-    public abstract void loot(Entity target);
 }
