@@ -1,4 +1,4 @@
-package org.example.models.properties;
+package be.technifutur.models.properties;
 
 public enum StatType {
     hp,

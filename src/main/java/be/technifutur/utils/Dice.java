@@ -1,4 +1,4 @@
-package org.example.utils;
+package be.technifutur.utils;
 
 import java.util.*;
 

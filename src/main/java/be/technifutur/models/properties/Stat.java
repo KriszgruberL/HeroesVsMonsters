@@ -1,7 +1,7 @@
-package org.example.models.properties;
+package be.technifutur.models.properties;
 
+import be.technifutur.utils.Dice;
 import lombok.Getter;
-import org.example.utils.Dice;
 
 import java.util.HashMap;
 import java.util.Map;

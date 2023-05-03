@@ -1,15 +1,17 @@
-package org.example.models.entity;
+package be.technifutur.models.entity;
 
-import org.example.models.loots.Leather;
-import org.example.models.properties.StatType;
-import org.example.utils.Dice;
+import be.technifutur.utils.Dice;
+import be.technifutur.models.loots.Leather;
+import be.technifutur.models.properties.StatType;
 
 public class Wolf extends Monster implements Leather {
 
     private Integer leather;
 
+
     public Wolf(){
         leather = Dice.D6.throwDice();
+
     }
 
 //        wolfLeather = Dice.D100.throwDices(5,2);
@@ -17,13 +19,15 @@ public class Wolf extends Monster implements Leather {
 
     @Override
     public void hit(Entity target) {
-        int damage = getStatList().modifier(StatType.dexterity) + Dice.D4.throwDice();
+        int damage = getStatList().modifier(StatType.intelligence) + Dice.D4.throwDice();
+        printDamage(target,damage);
 
     }
 
     @Override
     public void loot(Entity target) {
-        System.out.println("Drop :" + leather + " wolf leather");
+            System.out.println( leather +" wolf leather");
+
 
     }
 

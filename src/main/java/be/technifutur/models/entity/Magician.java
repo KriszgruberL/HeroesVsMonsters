@@ -1,7 +1,7 @@
-package org.example.models.entity;
+package be.technifutur.models.entity;
 
-import org.example.models.properties.StatType;
-import org.example.utils.Dice;
+import be.technifutur.utils.Dice;
+import be.technifutur.models.properties.StatType;
 
 public class Magician extends Hero {
 
@@ -9,17 +9,12 @@ public class Magician extends Hero {
         super(name);
     }
 
-
-
     @Override
     public void hit(Entity target) {
 //        Integer random = this.getIntelligence() / Dice.D4.throwDices(1);
 
         int damage = getStatList().modifier(StatType.intelligence) + Dice.D4.throwDice();
-        System.out.println(getName() + " hit " + target.getName() + " who takes " + damage + " damages");
-        target.takeDamage(damage);
-        System.out.println(target.getName() + " : Hp left " + target.getCurrentHp());
-
+        printDamage(target,damage);
     }
 
     @Override

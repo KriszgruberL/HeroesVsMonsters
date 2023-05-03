@@ -1,4 +1,4 @@
-package org.example.models.loots;
+package be.technifutur.models.loots;
 
 public interface Leather {
 
